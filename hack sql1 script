@@ -42,7 +42,7 @@ create table users(
 
 HACK 3
 
-createcreate table countries(
+create table countries(
  id_country serial primary key, 
  name varchar(50) not null  
 );   
