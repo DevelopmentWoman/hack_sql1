@@ -269,3 +269,29 @@ values
 (1, 2, 'GeForce RTX 4080 Ti SUPER', 3, 800),
 (2, 3, 'Disco ssd 500 gb', 12, 30),
 (3, 1, 'cpu i7, 32gb ram, disco 2tb', 2, 800);
+
+
+
+
+select * from customers;
+delete from products_customers  where id_customer = 1;
+delete from customers where id_customer = 1;
+select * from customers;
+
+
+select * from customers;
+delete from products_customers  where id_customer = 3;
+delete from customers where id_customer = 3;
+select * from customers;
+
+select * from customers;
+update customers set email = 'ElJuniorrrr' where  id_customer = 1;
+select * from customers;
+
+select * from taxes;
+update taxes set percentage=30;
+select * from taxes;
+
+select * from products;
+update products set price = 200;
+select * from products;
