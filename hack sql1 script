@@ -224,7 +224,7 @@ insert into taxes (percentage) values (10),(15),(20);
 insert into offers (status) values ('iniciada'), ('en proceso'), ('finaliza');
 
 
-insert into discounts (status, percentage) values ('activo', '10'), ('suspendido', '15'), ('desactivado', '20') ;
+insert into discounts (status, percentage) values ('activo', 10), ('suspendido', 15), ('desactivado', 20) ;
 
 
 
@@ -258,7 +258,7 @@ insert into products_customers (id_product, id_customer) values (1,2), (2,3),(3,
 insert into invoices 
  (id_customer, id_payment, id_invoice_status, date, total_to_pay) 
 values
-(1, 2, 1, '02/17/2024', 3967.5),
+(1, 2, 1, '02/17/2024', 3570.75),
 (2, 1, 2, '02/19/2024', 396),
 (3, 3, 3, '02/18/2024', 1760);
 
@@ -266,7 +266,7 @@ values
 insert into orders 
  (id_invoice, id_product, detail, amount, price)
 values  
-(1, 2, 'GeForce RTX 4080 Ti SUPER', 3, 800),
+(1, 2, 'GeForce RTX 4080 Ti SUPER', 3, 1150),
 (2, 3, 'Disco ssd 500 gb', 12, 30),
 (3, 1, 'cpu i7, 32gb ram, disco 2tb', 2, 800);
 
