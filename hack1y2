@@ -1,0 +1,271 @@
+
+HACK 1
+
+create table countries(
+  id_country serial primary key,
+  name varchar(50) not null  
+);
+create table users(
+ id_users serial primary key,
+ id_country integer not null,
+ email varchar(100) not null,
+ name varchar (50) not null,
+ foreign key (id_country) references countries (id_country)   
+);
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  HACK 2
+
+  insert into countries (name) values ('Venezuela') , ('España'),('chile');
+  select * from countries;
+
+  insert into users (id_country, email, name) 
+  values (1,'junior@gmail.com', 'Junior'), (3,'patio@outlook.com', 'Patricia'),
+  (2,'miguel@gmail.com','Miguel'), (2,'alfredo@gmail.com', 'Alfredo'), (1,'yelitza@gmail.com', 'Yelitza'); 
+  select * from users;
+
+  delete from users where email = 'alfredo@gmail.com';
+
+  update users set email = 'alfre@gmail.com', name = 'Alejandro' where id_users = 4;
+  select * from users;
+
+  select * from users inner join  countries on users.id_country = countries.id_country;
+
+  select u.id_users as id, u.email, u.name as fullname, c.name 
+  from users u inner join  countries c on u.id_country = c.id_country;
+
+
+  
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HACK 3
+
+createcreate table countries(
+ id_country serial primary key, 
+ name varchar(50) not null  
+);   
+
+create table priorities(
+ id_priority serial primary key, 
+ type_name varchar(20) not null
+);  
+
+create table contact_request(
+ id_email varchar(100) primary key, id_country integer not null,
+ id_priority integer not null, name varchar (50) not null,
+ detail varchar (200) null, physical_address varchar (20) not null,
+ foreign key (id_country) references countries (id_country),   foreign key (id_priority) references priorities (id_priority)
+);
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+HACK 4 CON UPDATE
+  
+insert into countries (name) values ('Venezuela') , ('Colombia'),('Peru'),('Bolivia'),('Ecuador'); 
+
+insert into priorities (type_name) values ('Priority1'), ('Priority2'),('Priority3');  
+
+insert into contact_request(id_email, id_country, id_priority, name, detail,physical_address)
+values 
+('junior@gmail.com', 1, 1, 'Junior', 'motherboard stopped working', 'AA-00-E2-4F-56'),
+('patricia@outlook.com', 3, 2, 'Patricia', 'network card is not working', 'F6-02-k5-85-89'),
+('miguel@gmail.com', 4, 3, 'Miguel', 'os installation', 'ZZ-RT-M1-44-86');                                                                            
+
+select * from contact_request;                                                                               
+
+delete from contact_request where id_email = 'miguel@gmail.com';
+select * from contact_request;
+
+
+update contact_request set name='ElJuniorrr', detail= 'CPU stopped working', physical_address = 'FR-99-H1-5F-E7' where id_email= 'junior@gmail.com';
+
+select * from contact_request;
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HACK 4 CON DELETE
+
+insert into countries (name) values ('Venezuela') , ('Colombia'),('Peru'),('Bolivia'),('Ecuador'); 
+
+insert into priorities (type_name) values ('Priority1'), ('Priority2'),('Priority3');  
+
+insert into contact_request(id_email, id_country, id_priority, name, detail,physical_address)
+values 
+('junior@gmail.com', 1, 1, 'Junior', 'motherboard stopped working', 'AA-00-E2-4F-56'),
+('patricia@outlook.com', 3, 2, 'Patricia', 'network card is not working', 'F6-02-k5-85-89'),
+('miguel@gmail.com', 4, 3, 'Miguel', 'os installation', 'ZZ-RT-M1-44-86');                                                                            
+
+select * from contact_request;                                                                               
+
+delete from contact_request where id_email = 'miguel@gmail.com';
+select * from contact_request;
+
+delete  from contact_request where id_email = 'junior@gmail.com';                                                                        
+select * from contact_request;
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+HACK 5 
+
+
+-- create
+create table countries(
+  id_country serial primary key,
+  name varchar(50) not null  
+);
+
+create table roles(
+ id_role serial primary key,
+ name varchar(50) not null
+);
+
+create table taxes(
+  id_tax serial primary key,
+  percentage integer not null
+);
+
+create table offers(
+ id_offer serial primary key,
+ status varchar(20) not null
+);
+
+
+create table discounts(
+ id_discount serial primary key,
+ status varchar(20) not null,
+ percentage integer not null
+);
+
+
+create table payments(
+ id_payment serial primary key,
+ type varchar(20) not null
+);
+
+create table customers(
+ email varchar(100) not null,
+ id_customer serial primary key,
+ id_country integer not null,
+ id_role integer not null,
+ name varchar(50) not null,
+ age integer,
+ password varchar(100) not null,
+ physical_address varchar(100)
+);
+
+create table invoices_status(
+ id_invoices_statusr serial primary key,
+ status varchar(20) not null
+);
+
+create table products(
+ id_product serial primary key,
+ id_discount integer not null,
+ id_offer integer not null,
+ id_tax integer not null,
+ name varchar(50) not null,
+ details varchar(100),
+ minimum_stock integer not null,
+ maximum_stock integer not null,
+ current_stock integer not null,
+ price decimal not null,
+ price_with_tax decimal not null
+);
+
+create table products_customers(
+id_product integer,
+id_customer integer,
+foreign key (id_product) references products (id_product),
+foreign key (id_customer) references customers (id_customer),
+PRIMARY KEY(id_product, id_customer)
+);
+
+create table invoices(
+ id_invoice serial primary key,
+ id_customer integer not null,
+ id_payment integer not null,
+ id_invoice_status  integer not null,
+ date date,
+ total_to_pay decimal
+);
+
+
+create table orders(
+ id_order serial primary key,
+ id_invoice integer not null,
+ id_product integer not null,
+ detail  varchar(200),
+ amount decimal,
+ price decimal
+);
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+HACK 6
+  
+insert into countries (name) values  ('Venezuela'), ('Guatemala'), ('Francia'); 
+
+
+insert into roles (name) values ('admin'), ('supervisor'), ('usuario');
+
+insert into taxes (percentage) values (10),(15),(20);  
+ 
+
+insert into offers (status) values ('iniciada'), ('en proceso'), ('finaliza');
+
+
+insert into discounts (status, percentage) values ('activo', '10'), ('suspendido', '15'), ('desactivado', '20') ;
+
+
+
+insert into payments (type) values ('efectivo'), ('tarjeta'), ('paypal'); 
+
+
+insert into customers   
+(email, id_country, id_role,name, age, password, physical_address) 
+ values
+('junior@gmail.com', 3, 3, 'Junior', 29, 'A@43.e', '12-45-62-32'),
+('alfre@gmail.com', 2, 3, 'Alfedo', 22, 'e563AA', 'AA-4O-L2-36'),
+('yelir@gmail.com', 1, 3, 'Yelitza', 42, '456aE*e', '10-YT-k2-ER');
+
+
+insert into invoices_status (status) values ('emitida'), ('facturada'), ('pagada');
+
+
+insert into products 
+ (id_discount, id_offer, id_tax, name, details, minimum_stock, maximum_stock,
+ current_stock, price, price_with_tax ) 
+values 
+(1, 1, 1, 'Laptop', 'cpu i7, 32gb ram, disco 2tb', 1, 100, 10, 800, 880), 
+(2, 2, 2, 'Tarjeta gráfica', 'GeForce RTX 4080 Ti SUPER', 1, 20, 5, 1150, 1322.5),
+(3, 2, 1, 'Disco Duro sata', 'Disco ssd 500 gb', 1, 200, 150, 30, 33);
+
+
+
+insert into products_customers (id_product, id_customer) values (1,2), (2,3),(3,1);
+
+
+insert into invoices 
+ (id_customer, id_payment, id_invoice_status, date, total_to_pay) 
+values
+(1, 2, 1, '02/17/2024', 3967.5),
+(2, 1, 2, '02/19/2024', 396),
+(3, 3, 3, '02/18/2024', 1760);
+
+
+insert into orders 
+ (id_invoice, id_product, detail, amount, price)
+values  
+(1, 2, 'GeForce RTX 4080 Ti SUPER', 3, 800),
+(2, 3, 'Disco ssd 500 gb', 12, 30),
+(3, 1, 'cpu i7, 32gb ram, disco 2tb', 2, 800);
